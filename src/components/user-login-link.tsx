@@ -8,9 +8,9 @@ import useSWR from "swr";
 type UserLoginLinkProps = React.HTMLAttributes<HTMLAnchorElement>;
 
 export function UserLoginLink({ ...other }: UserLoginLinkProps) {
-  const { data } = useSWR<User>("/api/user", fetcher);
+  const { data, error } = useSWR<User>("/api/user", fetcher);
 
-  return !data ? null : data?.id ? (
+  return !data && !error ? null : data?.id ? (
     <Link href="/dashboard" className="hover:underline" {...other}>
       Dashboard
     </Link>
