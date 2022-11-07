@@ -7,12 +7,9 @@ export async function getSession(
     return new Promise((resolve) => resolve(null));
   }
 
-  const response = await fetch(
-    `${process.env.VERCEL_URL ?? process.env.NEXTAUTH_URL}/api/auth/session`,
-    {
-      headers: { cookie },
-    }
-  );
+  const response = await fetch(`${process.env.NEXTAUTH_URL}/api/auth/session`, {
+    headers: { cookie },
+  });
 
   if (!response?.ok) {
     return new Promise((resolve) => resolve(null));
