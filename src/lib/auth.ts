@@ -60,7 +60,7 @@ export const authOptions: NextAuthOptions = {
       // };
 
       return {
-        id: token.id,
+        id: token.id ?? token.sub,
         name: token.name,
         email: token.email,
         picture: token.picture,
