@@ -10,15 +10,15 @@ interface LandingLayoutProps {
 export default function LandingLayout({ children }: LandingLayoutProps) {
   return (
     <div className="mx-auto w-full px-4">
-      <header className="mx-auto flex max-w-[1440px] items-center justify-between py-4">
+      <header className="mx-auto mb-12 flex max-w-[1440px] items-center justify-between py-4">
         <div className="flex gap-10">
           <Link href="/" className="flex items-center space-x-2">
             <Icons.PartyPopper />
             <span className="font-bold">{STRING_CONSTANTS.TITLE}</span>
           </Link>
           <nav>
-            <Link href="/test" className="hover:underline">
-              Test
+            <Link href="/post" className="hover:underline">
+              Gjestebok
             </Link>
           </nav>
         </div>

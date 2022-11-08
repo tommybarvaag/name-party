@@ -1,5 +1,5 @@
+import { getSession } from "@/lib/session";
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
-import { getSession } from "next-auth/react";
 import * as z from "zod";
 
 export const schema = z.object({

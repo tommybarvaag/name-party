@@ -14,7 +14,7 @@ export default function RegisterPage() {
       </Link>
       <div className="h-full bg-slate-100" />
       <div className="p-8">
-        <div className="mx-auto flex w-[350px] flex-col justify-center space-y-6">
+        <div className="mx-auto flex max-w-[350px] flex-col justify-center space-y-6">
           <div className="flex flex-col space-y-2 text-center">
             <Icons.Logo className="mx-auto h-6 w-6" />
             <h1 className="text-2xl font-bold">Lag en konto</h1>

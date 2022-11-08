@@ -1,29 +1,32 @@
-import { headers } from "next/headers";
-
 import { DashboardHeader } from "@/components/dashboard-header";
 import { DashboardShell } from "@/components/dashboard-shell";
 import { db } from "@/lib/db";
-import { getSession } from "@/lib/session";
+import { getCurrentUser } from "@/lib/session";
+import { User } from "@prisma/client";
 
 export const dynamic = "force-dynamic";
 
-async function getUser() {
-  const session = await getSession(headers().get("cookie"));
+async function getUser(userId?: User["id"]) {
+  try {
+    const user = await db.user.findFirst({
+      where: {
+        id: userId,
+      },
+      include: {
+        rsvp: true,
+      },
+    });
 
-  const user = await db.user.findFirst({
-    where: {
-      email: session?.user?.email,
-    },
-    include: {
-      rsvp: true,
-    },
-  });
-
-  return user;
+    return user;
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 export default async function DashboardPage() {
-  const user = await getUser();
+  const currentUser = await getCurrentUser();
+
+  const user = await getUser(currentUser?.id);
 
   return (
     <DashboardShell>

@@ -1,23 +1,16 @@
-import { Session } from "next-auth";
+import { unstable_getServerSession } from "next-auth/next";
+import type { GetSessionParams } from "next-auth/react";
+import { getSession as nextAuthGetSession } from "next-auth/react";
+import { authOptions } from "./auth";
 
-export async function getSession(
-  cookie: string | null
-): Promise<Session | null> {
-  if (!cookie) {
-    return new Promise((resolve) => resolve(null));
-  }
+export async function getSession(params?: GetSessionParams) {
+  return params
+    ? await nextAuthGetSession(params)
+    : await unstable_getServerSession(authOptions);
+}
 
-  const response = await fetch(`${process.env.NEXTAUTH_URL}/api/auth/session`, {
-    headers: { cookie },
-  });
+export async function getCurrentUser() {
+  const session = await getSession();
 
-  if (!response?.ok) {
-    return new Promise((resolve) => resolve(null));
-  }
-
-  const session = await response.json();
-
-  return Object.keys(session).length > 0
-    ? session
-    : new Promise((resolve) => resolve(null));
+  return session?.user;
 }

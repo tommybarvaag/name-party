@@ -3,8 +3,7 @@ const config = {
   reactStrictMode: true,
   experimental: {
     appDir: true,
-    newNextLinkBehavior: true,
-    serverComponentsExternalPackages: ["prisma"],
+    serverComponentsExternalPackages: ["@prisma/client"],
   },
 };
 export default config;

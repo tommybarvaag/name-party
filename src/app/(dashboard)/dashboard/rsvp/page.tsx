@@ -1,19 +1,17 @@
-import { headers } from "next/headers";
-
 import { DashboardHeader } from "@/components/dashboard-header";
 import { DashboardShell } from "@/components/dashboard-shell";
 import { UserRsvpForm } from "@/components/user-rsvp-form";
 import { db } from "@/lib/db";
-import { getSession } from "@/lib/session";
+import { getCurrentUser } from "@/lib/session";
 
 export const dynamic = "force-dynamic";
 
 async function getUser() {
-  const session = await getSession(headers().get("cookie"));
+  const currentUser = await getCurrentUser();
 
   const user = await db.user.findFirst({
     where: {
-      email: session?.user?.email,
+      id: currentUser?.id,
     },
     include: {
       rsvp: true,
@@ -25,8 +23,6 @@ async function getUser() {
 
 export default async function DashboardPage() {
   const user = await getUser();
-
-  console.log(user);
 
   return (
     <DashboardShell>
