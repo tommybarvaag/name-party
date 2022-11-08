@@ -10,6 +10,10 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
       const session = await unstable_getServerSession(req, res, authOptions);
 
+      if (!session) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
       return res.status(200).json(session);
     } catch (error) {
       if (error instanceof z.ZodError) {
