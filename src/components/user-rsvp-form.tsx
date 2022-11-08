@@ -113,7 +113,7 @@ export function UserRsvpForm({
             </label>
             <input
               id="guests"
-              className="my-0 block h-9 w-[60px] rounded-md border border-slate-300 py-2 px-3 text-sm placeholder:text-slate-400 hover:border-slate-400 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:ring-offset-1"
+              className="my-0 block h-9 w-[60px] rounded-md border border-slate-300 py-2 px-3 placeholder:text-slate-400 hover:border-slate-400 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:ring-offset-1"
               type="number"
               {...register("guests", {
                 valueAsNumber: true,
@@ -131,7 +131,7 @@ export function UserRsvpForm({
             </label>
             <textarea
               id="message"
-              className="my-0 mb-2 block h-9 rounded-md border border-slate-300 py-2 px-3 text-sm placeholder:text-slate-400 hover:border-slate-400 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:ring-offset-1 lg:w-[350px]"
+              className="my-0 mb-2 block h-9 rounded-md border border-slate-300 py-2 px-3 placeholder:text-slate-400 hover:border-slate-400 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:ring-offset-1 lg:w-[350px]"
               {...register("message")}
             />
             {errors?.message && (
@@ -145,7 +145,7 @@ export function UserRsvpForm({
           <button
             type="submit"
             className={cn(
-              "relative inline-flex h-9 items-center rounded-md border border-transparent bg-brand-500 px-4 py-2 text-sm font-medium text-white hover:bg-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2",
+              "relative inline-flex h-9 items-center rounded-md border border-transparent bg-brand-500 px-4 py-2  font-medium text-white hover:bg-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2",
               {
                 "cursor-not-allowed opacity-60": isSaving,
               },
