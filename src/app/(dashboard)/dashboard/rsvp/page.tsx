@@ -1,28 +1,18 @@
 import { DashboardHeader } from "@/components/dashboard-header";
 import { DashboardShell } from "@/components/dashboard-shell";
 import { UserRsvpForm } from "@/components/user-rsvp-form";
-import { db } from "@/lib/db";
-import { getCurrentUser } from "@/lib/session";
+import { authOptions } from "@/lib/auth";
+import { getUser } from "@/utils/userUtils";
+import { redirect } from "next/navigation";
 
 export const dynamic = "force-dynamic";
 
-async function getUser() {
-  const currentUser = await getCurrentUser();
-
-  const user = await db.user.findFirst({
-    where: {
-      id: currentUser?.id,
-    },
-    include: {
-      rsvp: true,
-    },
-  });
-
-  return user;
-}
-
 export default async function DashboardPage() {
   const user = await getUser();
+
+  if (!user) {
+    redirect(authOptions.pages?.signIn ?? "/");
+  }
 
   return (
     <DashboardShell>
@@ -32,12 +22,12 @@ export default async function DashboardPage() {
       />
       <UserRsvpForm
         user={{
-          id: user?.id ?? "unknown",
+          id: user.id,
         }}
         rsvp={{
-          attending: user?.rsvp?.attending ?? false,
-          guests: user?.rsvp?.guests ?? 0,
-          message: user?.rsvp?.message ?? "",
+          attending: user.rsvp?.attending ?? false,
+          guests: user.rsvp?.guests ?? 0,
+          message: user.rsvp?.message ?? "",
         }}
       />
     </DashboardShell>

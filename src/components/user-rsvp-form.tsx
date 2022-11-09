@@ -1,11 +1,11 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { RSVP, User } from "@prisma/client";
+import type { RSVP, User } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import * as React from "react";
 import { useForm } from "react-hook-form";
-import * as z from "zod";
+import type { infer as zInfer } from "zod";
 
 import { Icons } from "@/components/icons";
 import { Card } from "@/components/ui/card";
@@ -18,7 +18,7 @@ interface UserRsvpFormProps extends React.HTMLAttributes<HTMLFormElement> {
   rsvp: Pick<RSVP, "attending" | "guests" | "message">;
 }
 
-type FormData = z.infer<typeof rsvpSchema>;
+type FormData = zInfer<typeof rsvpSchema>;
 
 export function UserRsvpForm({
   user,
@@ -156,7 +156,7 @@ export function UserRsvpForm({
             {isSaving && (
               <Icons.Spinner className="mr-2 h-4 w-4 animate-spin" />
             )}
-            <span>Save</span>
+            <span>Lagre</span>
           </button>
         </Card.Footer>
       </Card>

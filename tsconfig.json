@@ -20,7 +20,8 @@
       "@/constants/*": ["src/constants/*"],
       "@/components/*": ["src/components/*"],
       "@/lib/*": ["src/lib/*"],
-      "@/styles/*": ["src/styles/*"]
+      "@/styles/*": ["src/styles/*"],
+      "@/utils/*": ["src/utils/*"]
     },
     "plugins": [
       {

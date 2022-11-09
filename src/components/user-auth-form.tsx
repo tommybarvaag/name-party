@@ -4,14 +4,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
 import * as React from "react";
 import { useForm } from "react-hook-form";
-import * as z from "zod";
+import type { infer as zInfer } from "zod";
 
 import { Icons } from "@/components/icons";
 import toast from "@/components/ui/toast";
 import { cn } from "@/lib/utils";
 import { userAuthSchema } from "@/lib/validations/auth";
 
-type FormData = z.infer<typeof userAuthSchema>;
+type FormData = zInfer<typeof userAuthSchema>;
 
 export function UserAuthForm({
   className,

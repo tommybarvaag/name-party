@@ -1,10 +1,10 @@
 "use client";
 
+import type { Icon } from "@/components/icons";
+import { Icons } from "@/components/icons";
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-import { Icon, Icons } from "@/components/icons";
 
 export type NavigationItem = {
   title: string;

@@ -40,7 +40,7 @@ export const authOptions: NextAuthOptions = {
 
       return session;
     },
-    async jwt({ token, user }) {
+    async jwt({ token }) {
       // const dbUser = await db.user.findFirst({
       //   where: {
       //     id: token.id,

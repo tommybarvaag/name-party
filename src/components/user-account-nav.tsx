@@ -1,6 +1,6 @@
 "use client";
 
-import { User } from "next-auth";
+import type { User } from "next-auth";
 import { signOut } from "next-auth/react";
 
 import { DropdownMenu } from "@/components/ui/dropdown";
@@ -40,7 +40,7 @@ export function UserAccountNav({ user, ...other }: UserAccountNavProps) {
         </div>
       </DropdownMenu.Trigger>
       <DropdownMenu.Portal>
-        <DropdownMenu.Content className="md:w-[240px]" align="start">
+        <DropdownMenu.Content className="md:w-[240px]" align="start" {...other}>
           <div className="flex items-center justify-start gap-2 p-4">
             <div className="flex flex-col leading-none">
               {user.name && <p className="font-medium">{user.name}</p>}

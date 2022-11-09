@@ -1,5 +1,5 @@
 import { getSession } from "@/lib/session";
-import { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiRequest, NextApiResponse } from "next";
 import * as z from "zod";
 
 import { withAuthentication } from "@/lib/api-middleware/with-authentication";

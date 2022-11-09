@@ -1,32 +1,16 @@
-import { notFound } from "next/navigation";
-
 import { DashboardHeader } from "@/components/dashboard-header";
 import { DashboardShell } from "@/components/dashboard-shell";
 import { UserNameForm } from "@/components/user-name-form";
 import { STRING_CONSTANTS } from "@/constants/stringConstants";
-import { db } from "@/lib/db";
-import { getCurrentUser } from "@/lib/session";
-
-async function getUser() {
-  const currentUser = await getCurrentUser();
-
-  const user = await db.user.findFirst({
-    where: {
-      id: currentUser?.id,
-    },
-    include: {
-      rsvp: true,
-    },
-  });
-
-  return user;
-}
+import { authOptions } from "@/lib/auth";
+import { getUser } from "@/utils/userUtils";
+import { redirect } from "next/navigation";
 
 export default async function SettingsPage() {
   const user = await getUser();
 
   if (!user) {
-    notFound();
+    redirect(authOptions.pages?.signIn ?? "/");
   }
 
   return (

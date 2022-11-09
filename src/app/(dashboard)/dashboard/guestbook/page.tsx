@@ -1,24 +1,14 @@
-import { notFound } from "next/navigation";
-
 import { DashboardHeader } from "@/components/dashboard-header";
 import { DashboardShell } from "@/components/dashboard-shell";
-import { getCurrentUser } from "@/lib/session";
-
-async function getUser() {
-  const currentUser = await getCurrentUser();
-
-  if (!currentUser) {
-    return null;
-  }
-
-  return currentUser;
-}
+import { authOptions } from "@/lib/auth";
+import { getUser } from "@/utils/userUtils";
+import { redirect } from "next/navigation";
 
 export default async function GuestbookPage() {
   const user = await getUser();
 
   if (!user) {
-    notFound();
+    redirect(authOptions.pages?.signIn ?? "/");
   }
 
   return (

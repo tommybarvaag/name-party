@@ -7,7 +7,7 @@ interface LandingLayoutProps {
   children: React.ReactNode;
 }
 
-export default function LandingLayout({ children }: LandingLayoutProps) {
+export default async function LandingLayout({ children }: LandingLayoutProps) {
   return (
     <div className="mx-auto w-full px-4">
       <header className="mx-auto mb-12 flex max-w-[1440px] items-center justify-between py-4">

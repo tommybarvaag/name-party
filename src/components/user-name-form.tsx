@@ -1,23 +1,22 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { User } from "@prisma/client";
-import { useRouter } from "next/navigation";
-import * as React from "react";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
-
 import { Icons } from "@/components/icons";
 import { Card } from "@/components/ui/card";
 import toast from "@/components/ui/toast";
 import { cn } from "@/lib/utils";
 import { userNameSchema } from "@/lib/validations/user";
+import { zodResolver } from "@hookform/resolvers/zod";
+import type { User } from "@prisma/client";
+import { useRouter } from "next/navigation";
+import * as React from "react";
+import { useForm } from "react-hook-form";
+import type { infer as zInfer } from "zod";
 
 interface UserNameFormProps extends React.HTMLAttributes<HTMLFormElement> {
   user: Pick<User, "id" | "name">;
 }
 
-type FormData = z.infer<typeof userNameSchema>;
+type FormData = zInfer<typeof userNameSchema>;
 
 export function UserNameForm({ user, className, ...other }: UserNameFormProps) {
   const router = useRouter();
@@ -28,7 +27,7 @@ export function UserNameForm({ user, className, ...other }: UserNameFormProps) {
   } = useForm<FormData>({
     resolver: zodResolver(userNameSchema),
     defaultValues: {
-      name: user.name ?? "Oppdater navn",
+      name: user.name ?? "",
     },
   });
   const [isSaving, setIsSaving] = React.useState<boolean>(false);
@@ -84,6 +83,7 @@ export function UserNameForm({ user, className, ...other }: UserNameFormProps) {
               id="name"
               className="my-0 mb-2 block h-9 rounded-md border border-slate-300 py-2 px-3 placeholder:text-slate-400 hover:border-slate-400 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:ring-offset-1 lg:w-[350px]"
               size={32}
+              placeholder="Navn"
               {...register("name")}
             />
             {errors?.name && (
@@ -106,7 +106,7 @@ export function UserNameForm({ user, className, ...other }: UserNameFormProps) {
             {isSaving && (
               <Icons.Spinner className="mr-2 h-4 w-4 animate-spin" />
             )}
-            <span>Save</span>
+            <span>Lagre</span>
           </button>
         </Card.Footer>
       </Card>
