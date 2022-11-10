@@ -57,6 +57,7 @@ model User {
   sessions       Session[]
   guestbookEntry GuestbookEntry[]
   rsvp           RSVP?
+  images         Image[]
 
   @@map(name: "user")
 }
@@ -96,4 +97,21 @@ model GuestbookEntry {
   author User @relation(fields: [authorId], references: [id])
 
   @@map(name: "guestbook_entry")
+}
+
+model Image {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @default(now()) @map(name: "updated_at")
+  name      String
+  url       String
+  sanityId  String
+  uploadId  String
+  mimeType  String
+  extension String
+  userId    String
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@map(name: "images")
 }

@@ -29,3 +29,21 @@ export const getUser = cache(async (includeRsvp = true) => {
 
   return await getUserById(currentUser?.id, includeRsvp);
 });
+
+export const getUserImages = cache(async () => {
+  const currentUser = await getCurrentUser();
+
+  if (!currentUser) {
+    return null;
+  }
+
+  return db.user.findUnique({
+    where: {
+      id: currentUser.id,
+    },
+    include: {
+      images: true,
+      rsvp: false,
+    },
+  });
+});

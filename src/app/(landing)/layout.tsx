@@ -26,7 +26,7 @@ export default async function LandingLayout({ children }: LandingLayoutProps) {
           <UserLoginLink />
         </div>
       </header>
-      <main className="flex h-full max-h-screen items-center justify-center">
+      <main className="flex max-h-screen min-h-full items-center justify-center">
         {children}
       </main>
     </div>

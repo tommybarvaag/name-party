@@ -32,9 +32,8 @@ export const navigationItems: NavigationItem[] = [
 
   {
     title: "Last opp bilde",
-    href: "/",
+    href: "/dashboard/image-upload",
     icon: Icons.Media,
-    disabled: true,
   },
   {
     title: "Innstillinger",

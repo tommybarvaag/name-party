@@ -21,7 +21,7 @@ export default async function DashboardLayout({
 
   return (
     <>
-      <div className="flex h-screen overflow-hidden">
+      <div className="flex min-h-screen overflow-hidden">
         <aside className="h-0 w-0 flex-col md:flex md:h-auto md:w-14 md:border-r md:border-slate-100 md:bg-slate-50 md:py-4 lg:w-56 lg:flex-shrink-0 lg:px-4">
           <div className="hidden flex-1 flex-col space-y-4 md:flex">
             <DashboardBranding />
