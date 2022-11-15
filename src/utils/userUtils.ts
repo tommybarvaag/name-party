@@ -27,7 +27,9 @@ export const getUser = cache(async (includeRsvp = true) => {
     return null;
   }
 
-  return await getUserById(currentUser?.id, includeRsvp);
+  const user = await getUserById(currentUser?.id, includeRsvp);
+
+  return user;
 });
 
 export const getUserImages = cache(async () => {

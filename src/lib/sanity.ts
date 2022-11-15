@@ -1,7 +1,8 @@
 import sanityClient from "@sanity/client";
 
-const token =
-  "skHCqG8HlFAwfIUCkqA97Psy7VhPWUEmhoHwAr3BuvUPCy2s0UzE5TjLbp96C0VgkF16FZasncsI2gr8NukD04nDxVJP8nveRSmFWg7zhOCd5GyTuATMNobWqeKf7XysF9JeGk5Bpq2DmVkWw1Q1JPuY6uNnq984GOpQXli8LRNhHIdwcteB";
+const token = process.env.NEXT_PUBLIC_SANITY_TOKEN;
+
+console.log(token);
 
 export default sanityClient({
   // Find your project ID and dataset in `sanity.json` in your studio project

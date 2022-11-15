@@ -19,14 +19,14 @@ export default async function ImagePage() {
         heading="Dine bilder"
         text="Her kan du se dine bilder, og slette de du ikke ønsker å dele."
       />
-      <div className="columns-3">
-        {user?.images?.map((image) => (
-          <img
-            key={image.sanityId}
-            src={image.url}
-            className="aspect-square w-full"
-          />
-        ))}
+      <div className="container mx-auto">
+        <div className="grid-cols-3 space-y-2 lg:grid lg:grid-rows-3 lg:gap-3 lg:space-y-0">
+          {user?.images?.map((image) => (
+            <div className="aspect-square w-full">
+              <img key={image.sanityId} src={image.url} loading="lazy" />
+            </div>
+          ))}
+        </div>
       </div>
     </DashboardShell>
   );

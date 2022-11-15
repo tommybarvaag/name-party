@@ -6,4 +6,4 @@
 
 #### Connect locally
 
-`pscale connect name_party main --port 3309`
+`pscale connect name_party dev --port 3309`

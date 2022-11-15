@@ -28,13 +28,14 @@ const FileUpload = () => {
     // sleep for 500 milliseconds for every image uploaded
     // to avoid rate limiting
     for (let i = 0; i < files.length; i++) {
-      const wtf = files[i];
-      if (wtf) {
+      const file = files[i];
+      if (file) {
         const image = await sanity.assets
-          .upload("image", wtf, {
+          .upload("image", file, {
             description: "image",
           })
           .then((res) => {
+            console.log(res);
             sanity
               .patch(res._id)
               .set({
